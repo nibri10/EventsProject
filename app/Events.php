@@ -2,14 +2,14 @@
 
 namespace App;
 
-use Artesaos\Defender\Traits\HasDefender;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Events extends Authenticatable {
 
     use Notifiable;
-    use HasDefender;
+    
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +17,9 @@ class Events extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'date', 'local', 'time'
+        'name', 'description','date_initial' ,'date_finish', 
+        'local', 'time','time_expiration','city','vacancies',
+        'target_audience','file'
     ];
    
 

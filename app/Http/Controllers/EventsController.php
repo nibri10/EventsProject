@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Events;
 
+
+
 class EventsController extends Controller {
 
     public function index() {
 
-        $events = Events::orderBy('created_at', 'desc')->paginate(10);
-        return view('events.index', ['events' => $events]);
+        $events = Events::latest()->paginate(5);
+        return view('events.index',compact('events'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function show(Events $event)
+    {
+        return view('events.show',compact('event'));
     }
 
     public function create() {
@@ -18,28 +26,38 @@ class EventsController extends Controller {
     }
 
     public function store(Request $request) {
-        $event=Events::create($request->all());
-        $event->save();
-        
-        return redirect()->route('events.create')->with('message','Evento criado'
-                . 'com sucesso!!!');
+       /* Validação dos dados*/
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required|max:300',
+            'date_initial'=> 'required',
+            'date_finish'=> 'required',
+            'local' => 'required',
+            'time' => 'required',
+            'time_expiration'=> 'required',
+            'city'=> 'required|max:100',
+            'vacancies'=>'required',
+            'target_audience'=>'required',
+        ]);
+
+        Events::create($request->all());
+        return redirect()->route('events.index')->with('success','Evento criado com sucesso');
     }
     
     public  function edit($id){
-        $event = Events::findOrFail($id);
-        
-        return view('events.edit', compact($event));
+        $event = Events::find($id);
+        return view('events.edit', compact('event'));
     }
     
-    public function update(Request $request,Events $events){
-        $events->update($request->all()); 
-        return redirect()->route('events.index')->with('message','Evento Atualizado'
-                . 'com sucesso!!!');
+    public function update(Request $request,$id){
+        $events = Events::findOrfail($id);
+        $events->update($request->all());
+        return redirect()->route('events.index')->with('success','Evento Atualizado com sucesso');
     }
     
     public function destroy($id){
-        $event = Events::findOrfail($id);
-        $event->delete();
+        $events = Events::findOrfail($id);
+        $events->delete();
         
         return redirect()->route('events.index')->with('alert-message','Evento Deletado'
                 . 'com sucesso!!!');
