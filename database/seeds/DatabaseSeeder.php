@@ -14,11 +14,13 @@ class DatabaseSeeder extends Seeder
          //$this->call(UsersTableSeeder::class);
         
          
-        User::create([
+        /*User::create([
             'name'=>'Erik Figueiredo',
             'ra'=>'23034-2',
             'email'=>'erik.figueiredo@gmail.com',
             'password'=>bcrypt('123456'),
-        ]);
+        ]);*/
+
+        factory(\App\Events::class,100)->create();
     }
 }

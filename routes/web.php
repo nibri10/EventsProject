@@ -23,7 +23,7 @@ Route::middleware(['auth'])->prefix('sistema')->group(function () {
     
 
 Route::middleware(['level:0'])->group(function () {
-    
+    Route::get('eventsUser','UserEvents@index');
     });
 
 

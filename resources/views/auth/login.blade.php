@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Senha') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
@@ -66,12 +66,15 @@
                                 <button type="submit" class="btn btn-lg  btn-block " id="corVerdeUnifae">
                                     {{ __('Entrar') }}
                                 </button>
+                                <br>
+                                <p id="ou"> OU<p>
                             </div>
                         </div>
-                        <br>
+                 
                         <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <a class="btn btn-lg btn-info btn-block" id="register" href="{{ route('register') }}">Registrar-se</a>
+                                    <br>
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Esqueceu sua Senha?') }}
                                     </a>
@@ -80,6 +83,7 @@
                     </form>
                 </div>
             </div>
+            <footer id="ou"> &copy; UNIFAE 2019
         </div>
     </div>
 </div>

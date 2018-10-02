@@ -25,6 +25,11 @@
 	color:#ffff;
 }
 
+#ou{
+		text-align: center;
+		margin: 0 auto;
+}
+
 #banner{
 	margin-top: 5px;
 	text-align: center;
@@ -46,4 +51,19 @@
 
 #tituloForm{
 	text-align: center;
+}
+
+.evento{
+	width: 500px;
+	height: 390px;
+	text-align: center;
+	border: 2px solid grey;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 10px 10px 10px;
+ 	float: left;	
+}
+
+.error{
+	color: red;
 }
