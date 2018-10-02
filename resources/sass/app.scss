@@ -8,7 +8,42 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+
+
+#caixaDeLogin{
+	text-align: center;
+	width: 400px;
+	margin: 0 auto;
+}
+#corVerdeUnifae{
+	background: #9ACD32;
+	border: #9ACD32;
+	color:#ffff;	
+}
+
+#register{
+	color:#ffff;
+}
+
+#banner{
+	margin-top: 5px;
+	text-align: center;
+}
+
+#corpo{
+	border: 1px solid grey;
+	margin-left: 15%;
+	margin-right: 15%;
+	margin-top: 30px;
+}
+
+#botaoBot{
+	background: #9ACD32;
+	border: #9ACD32;
+	position: relative;
+	top: 150px;
+}
+
+#tituloForm{
+	text-align: center;
 }

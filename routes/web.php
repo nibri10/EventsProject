@@ -19,4 +19,21 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::middleware(['auth'])->prefix('sistema')->group(function () {
+    
+
+Route::middleware(['level:0'])->group(function () {
+    
+    });
+
+
+Route::middleware(['leve:1'])->group(function () {
+    
+    });
+
+});
+
 Route::resource('events','EventsController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
