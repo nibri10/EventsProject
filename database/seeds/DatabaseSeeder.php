@@ -22,5 +22,13 @@ class DatabaseSeeder extends Seeder
         ]);*/
 
         factory(\App\Events::class,100)->create();
+
+         User::create([
+            'name'=>'Erik Figueiredo',
+            'ra'=>'23034-4',
+            'level'=>'1',
+            'email'=>'erik.figueired@gmail.com',
+            'password'=>bcrypt('123456'),
+        ]);
     }
 }
