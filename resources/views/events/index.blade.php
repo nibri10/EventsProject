@@ -1,4 +1,4 @@
-@extends('events.layout')
+@extends('events.layout.app')
 
 @section('content')
 <div class="container">

@@ -19,10 +19,11 @@ Auth::routes();
 
 
 
-Route::middleware(['auth'])->prefix('sistema')->group(function () {
+Route::middleware(['auth'])->prefix('painel')->group(function () {
+
     Route::get('/','PainelController@index');
 Route::middleware(['level:0'])->group(function () {
-    Route::get('eventsUser','UserEvents@index');
+    
     });
 
 

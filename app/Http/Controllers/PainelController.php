@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-
+use \App\Events;
 
 class PainelController extends Controller
 {
     public function index(){
-        return view('index');
+        $events = Events::latest()->paginate(10);
+        return view('paginas.index',compact('events'))->with('i',(request()->input('page', 1) - 1) * 10);
     }
 }

@@ -10471,76 +10471,9 @@ a.text-dark:focus {
   }
 }
 
-#caixaDeLogin {
-  text-align: center;
-  width: 400px;
-  margin: 0 auto;
-}
-
-#corVerdeUnifae {
-  background: #9ACD32;
-  border: #9ACD32;
-  color: #ffff;
-}
-
-#register {
-  color: #ffff;
-}
-
-#ou {
-  text-align: center;
-  margin: 0 auto;
-}
-
-#banner {
-  margin-top: 5px;
-  text-align: center;
-}
-
-#corpo {
-  border: 1px solid grey;
-  margin-left: 15%;
-  margin-right: 15%;
-  margin-top: 30px;
-}
-
-#botaoBot {
-  background: #9ACD32;
-  border: #9ACD32;
-  position: relative;
-  top: 150px;
-}
-
-#tituloForm {
-  text-align: center;
-}
-
-.evento {
-  width: 500px;
-  height: 390px;
-  text-align: center;
-  border: 2px solid grey;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 10px 10px 10px 10px;
-  float: left;
-}
-
-.error {
-  color: red;
-}
-
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  .card-columns {
-    -webkit-column-count: 4;
-            column-count: 4;
-  }
-}
-
-@media (min-width: 1200px) {
-  .card-columns {
-    -webkit-column-count: 5;
-            column-count: 5;
-  }
+.navbar-laravel {
+  background-color: #ececec;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
