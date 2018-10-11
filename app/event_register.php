@@ -16,7 +16,7 @@ class event_register extends Authenticatable
      */
 
     protected $fillable=[
-        'id_event','id_user',
+        'id_event','name_event','name','email'
     ];
 
 
