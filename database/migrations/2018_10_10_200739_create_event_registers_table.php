@@ -15,16 +15,19 @@ class CreateEventRegistersTable extends Migration
     {
         Schema::create('event_registers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_event')->unsigned();;
-            $table->string('name_event');
-            $table->string('name');
-            $table->string('email');
+            $table->integer('id_event')->unsigned();
+            $table->integer('id_user')->unsigned();
             $table->timestamps();
-
             $table->foreign('id_event')
                 ->references('id')->on('events')
                 ->onDelete('cascade');
+
+            $table->foreign('id_user')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
+
+
     }
 
     /**

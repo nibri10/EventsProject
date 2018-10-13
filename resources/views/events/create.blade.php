@@ -80,23 +80,15 @@
                     </div>
             </div>
             <br>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">Adicionar Imagens do evento</div>
 
-                        <div class="card-body">
-                            <upload-files :input_name="'arquivo[]'" :post_url="'painel/files/upload-file'"></upload-files>
-                        </div>
-                    </div>
-                </div>
+        <div class="form-row">
+            <div class="col">
+                <input type="hidden" name="tipo" value="image">
+                <input type="file" name="image" id="image"><br/>
             </div>
         </div>
 
-        @foreach($input['arquivo[]'] as $file)
-
-        @endforeach
+        <br>
 
          <button type="submit" class="btn btn-primary">Criar Evento</button>
 </form>
