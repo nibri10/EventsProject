@@ -64,10 +64,17 @@ return [
             'url' => env('AWS_URL'),
         ],
 
-        'imagens' => [
+        'upl_image' => [
             'driver' => 'local',
-            'root' => public_path().'/assets/imagens'
+            'root' => public_path().'/assets/avatar'
         ],
+
+        'upl_arquivos' => [
+            'driver' => 'local',
+            'root' => public_path().'/assets/arquivos'
+        ],
+
+
 
     ],
 

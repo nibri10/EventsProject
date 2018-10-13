@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Events;
-
+use Illuminate\Support\Facades\Storage;
 
 
 class EventsController extends Controller {
@@ -38,9 +38,12 @@ class EventsController extends Controller {
             'city'=> 'required|max:100',
             'vacancies'=>'required',
             'target_audience'=>'required',
+            'image'=>'required'
+
         ]);
 
         Events::create($request->all());
+        Storage::disk('upl_image')->put('image_'.Events::create()->id.'.jpg',file_get_contents($request->file('image')));
         return redirect()->route('events.index')->with('success','Evento criado com sucesso');
     }
     

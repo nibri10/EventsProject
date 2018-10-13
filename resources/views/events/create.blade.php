@@ -79,9 +79,18 @@
                         <input type="text" class="form-control" placeholder="publico alvo" name="target_audience" required>
                     </div>
             </div>
+            <br>
+
+        <div class="form-row">
+            <div class="col">
+                <input type="hidden" name="tipo" value="image">
+                <input type="file" name="image" id="image"><br/>
+            </div>
+        </div>
+
         <br>
+
          <button type="submit" class="btn btn-primary">Criar Evento</button>
-</div>
 </form>
 </div>
 @endsection

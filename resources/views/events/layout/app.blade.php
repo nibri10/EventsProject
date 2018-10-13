@@ -82,14 +82,14 @@
                             <div class="sidebar-sticky">
                               <ul class="nav flex-column">
                                 <li class="nav-item">
-                                <a class="nav-link active" href="#">
+                                <a class="nav-link active" href="/painel">
                                     <span data-feather="home"></span>
                                     Inicio <span class="sr-only">(current)</span>
                                   </a>
                                 </li>
                             @if (Auth::user()->level>=1)    
                                 <li class="nav-item">
-                                  <a class="nav-link" href="#">
+                                  <a class="nav-link" href="painel/events/create">
                                     <span data-feather="file"></span>
                                     Cadastrar Eventos
                                   </a>
