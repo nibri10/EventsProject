@@ -26,6 +26,7 @@ class EventsController extends Controller {
     }
 
     public function store(Request $request) {
+
        /* Validação dos dados*/
         $request->validate([
             'name' => 'required|max:255',
@@ -43,7 +44,6 @@ class EventsController extends Controller {
         ]);
 
         Events::create($request->all());
-        Storage::disk('upl_image')->put('image_'.Events::create()->id.'.jpg',file_get_contents($request->file('image')));
         return redirect()->route('events.index')->with('success','Evento criado com sucesso');
     }
     
