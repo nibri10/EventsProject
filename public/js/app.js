@@ -47873,6 +47873,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['input_name', 'post_url'],
@@ -48025,7 +48026,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("Criar Evento")]
+        [_vm._v("Upload Arquivos")]
       )
     ],
     2

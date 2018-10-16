@@ -31,8 +31,12 @@ class Events extends Migration
             $table->string('city')->nullable();
             $table->integer('vacancies')->nullable();
             $table->string('target_audience')->nullable();
-            $table->string('image')->default(url('https://bit.ly/2RHG4lB'));
+            $table->integer('arquivo')->unsigned();
             $table->timestamps();
+
+            $table->foreign('arquivo')
+                ->references('id')->on('file_entries')
+                ->onDelete('cascade');
         });
     }
 

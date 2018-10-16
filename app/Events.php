@@ -19,7 +19,7 @@ class Events extends Authenticatable {
     protected $fillable = [
         'name', 'description','date_initial' ,'date_finish', 
         'local', 'time','time_expiration','city','vacancies',
-        'target_audience','file'
+        'target_audience','arquivo'
     ];
    
 

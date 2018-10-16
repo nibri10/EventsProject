@@ -39,7 +39,7 @@ class EventsController extends Controller {
             'city'=> 'required|max:100',
             'vacancies'=>'required',
             'target_audience'=>'required',
-            'image'=>'required'
+            'arquivo'=>'required',
 
         ]);
 

@@ -13,13 +13,14 @@
             <div class="success-container" v-if="file.id > 0">
                 Success
                 <input type="hidden" :name="input_name" :value="file.id"/>
+
             </div>
             <div class="remove-container" v-else>
                 <a class="remove" v-on:click="removeFile(key)">Remover</a>
             </div>
         </div>
 
-        <a class="submit-button" v-on:click="submitFiles()" v-show="files.length > 0">Criar Evento</a>
+        <a class="submit-button" v-on:click="submitFiles()" v-show="files.length > 0">Upload Arquivos</a>
     </div>
 </template>
 
