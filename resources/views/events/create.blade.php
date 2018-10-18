@@ -1,6 +1,7 @@
 @extends('events.layout.app')
 
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="container">
     <h2>Criar um novo evento</h2><br/>
 
@@ -80,17 +81,38 @@
                     </div>
             </div>
             <br>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">Add images</div>
 
-        <div class="form-row">
-            <div class="col">
-                <input type="hidden" name="tipo" value="image">
-                <input type="file" name="image" id="image"><br/>
+                        <div class="card-body">
+                            <upload-files id="arquivos" :input_name="'arquivo'" :post_url="'painel/files/upload-file'" ></upload-files>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <br>
 
          <button type="submit" class="btn btn-primary">Criar Evento</button>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $("form").submit(function () {
+                $.post('events.store', { 'arquivo' : $("input[name=arquivos]").val() } ,function(){
+                });
+            });
+        </script>
 </form>
+
+
 </div>
 @endsection

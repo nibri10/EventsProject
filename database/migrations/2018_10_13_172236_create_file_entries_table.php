@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArquivosTable extends Migration
+class CreateFileEntriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateArquivosTable extends Migration
      */
     public function up()
     {
-        Schema::create('arquivos', function (Blueprint $table) {
+        Schema::create('file_entries', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->string('tipo');
-            $table->string('tamanho');
-            $table->string('caminho');
+            $table->string('filename');
+            $table->string('mime');
+            $table->string('path');
+            $table->integer('size');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateArquivosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('arquivos');
+        Schema::dropIfExists('file_entries');
     }
 }
