@@ -47985,7 +47985,9 @@ var render = function() {
           _vm._v("\n        " + _vm._s(file.name) + "\n        "),
           file.id > 0
             ? _c("div", { staticClass: "success-container" }, [
-                _vm._v("\n            Success\n            "),
+                _vm._v(
+                  "\n            Upload de Imagem realizado com sucesso!\n            "
+                ),
                 _c("input", {
                   attrs: { type: "hidden", name: _vm.input_name },
                   domProps: { value: file.id }
@@ -48002,7 +48004,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Remover")]
+                  [_vm._v("Remover Arquivo")]
                 )
               ])
         ])

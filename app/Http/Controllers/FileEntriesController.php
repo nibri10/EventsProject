@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\FileEntry;
 use Illuminate\Http\Request;
+use App\Http\Requests\FileEntryRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
@@ -17,10 +18,9 @@ class FileEntriesController extends Controller
     }
 
 
-    public function uploadFile(Request $request) {
-        $this->validate($request, [
-//            'file' => 'image|max:3000'
-        ]);
+    public function uploadFile(FileEntryRequest $request) {
+
+        $validated = $request->validated();
 
         $file = Input::file('file');
         $filename = $file->getClientOriginalName();

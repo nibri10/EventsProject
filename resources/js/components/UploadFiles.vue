@@ -11,12 +11,12 @@
             <img class="preview" v-bind:ref="'preview'+parseInt(key)"/>
             {{ file.name }}
             <div class="success-container" v-if="file.id > 0">
-                Success
+                Upload de Imagem realizado com sucesso!
                 <input type="hidden" :name="input_name" :value="file.id"/>
 
             </div>
             <div class="remove-container" v-else>
-                <a class="remove" v-on:click="removeFile(key)">Remover</a>
+                <a class="remove" v-on:click="removeFile(key)">Remover Arquivo</a>
             </div>
         </div>
 

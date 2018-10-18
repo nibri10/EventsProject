@@ -88,7 +88,7 @@
                         <div class="card-header">Add images</div>
 
                         <div class="card-body">
-                            <upload-files id="arquivos" :input_name="'arquivo'" :post_url="'painel/files/upload-file'"></upload-files>
+                            <upload-files id="arquivos" :input_name="'arquivo'" :post_url="'painel/files/upload-file'" ></upload-files>
                         </div>
                     </div>
                 </div>

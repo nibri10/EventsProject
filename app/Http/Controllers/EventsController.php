@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Events;
+use App\Http\Requests\EventRequest;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -25,23 +26,9 @@ class EventsController extends Controller {
         return view('events.create');
     }
 
-    public function store(Request $request) {
+    public function store(EventRequest $request) {
 
-       /* Validação dos dados*/
-        $request->validate([
-            'name' => 'required|max:255',
-            'description' => 'required|max:300',
-            'date_initial'=> 'required',
-            'date_finish'=> 'required',
-            'local' => 'required',
-            'time' => 'required',
-            'time_expiration'=> 'required',
-            'city'=> 'required|max:100',
-            'vacancies'=>'required',
-            'target_audience'=>'required',
-            'arquivo'=>'required',
-
-        ]);
+        $validated = $request->validated();
 
         Events::create($request->all());
         return redirect()->route('events.index')->with('success','Evento criado com sucesso');
