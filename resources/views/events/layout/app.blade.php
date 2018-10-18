@@ -57,7 +57,7 @@
                                     </a>
 
                                 <ul class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Painel</a></li>
+                                    <li><a class="dropdown-item" href="/painel">Painel</a></li>
                                     <li><a class="dropdown-item" href="#">Configurações</a></li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -70,6 +70,55 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+
+                                    @if (Auth::user()->level>=1)
+                                        <li >
+                                            <a class="dropdown-item" href="painel/events/create">
+                                                <span data-feather="file"></span>
+                                                Cadastrar Eventos
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <span data-feather="shopping-cart"></span>
+                                                Editar Eventos
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <span data-feather="users"></span>
+                                                Apagar Eventos
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <span data-feather="bar-chart-2"></span>
+                                                Listar Usuários
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <span data-feather="bar-chart-2"></span>
+                                                Apagar Usuários
+                                            </a>
+                                        </li>
+                                    @endif
+                                    @if(Auth::user()->level>=0)
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <span data-feather="layers"></span>
+                                                Eventos Inscritos
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <span data-feather="layers"></span>
+                                                Cancelar Inscrições
+                                            </a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </li>
                         @endguest
@@ -78,81 +127,6 @@
             </div>
         </nav>
         <main class="py-4">
-                <div class="container-fluid">
-                        <div class="row">
-                          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                            <div class="sidebar-sticky">
-                              <ul class="nav flex-column">
-                                <li class="nav-item">
-                                <a class="nav-link active" href="/painel">
-                                    <span data-feather="home"></span>
-                                    Inicio <span class="sr-only">(current)</span>
-                                  </a>
-                                </li>
-                            @if (Auth::user()->level>=1)    
-                                <li class="nav-item">
-                                  <a class="nav-link" href="painel/events/create">
-                                    <span data-feather="file"></span>
-                                    Cadastrar Eventos
-                                  </a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link" href="#">
-                                    <span data-feather="shopping-cart"></span>
-                                    Editar Eventos
-                                  </a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link" href="#">
-                                    <span data-feather="users"></span>
-                                   Apagar Eventos
-                                  </a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link" href="#">
-                                    <span data-feather="bar-chart-2"></span>
-                                    Listar Usuários
-                                  </a>
-                                </li>
-                
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                          <span data-feather="bar-chart-2"></span>
-                                          Apagar Usuários
-                                    </a>
-                                </li>
-                            @endif
-                           @if(Auth::user()->level>=0)  
-                                <li class="nav-item">
-                                  <a class="nav-link" href="#">
-                                    <span data-feather="layers"></span>
-                                    Eventos Inscritos
-                                  </a>
-                                </li>
-
-                                <li class="nav-item">
-                                        <a class="nav-link" href="#">
-                                          <span data-feather="layers"></span>
-                                          Cancelar Inscrições
-                                        </a>
-                                </li>
-                            @endif
-                            
-                            <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                        Logout
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>       
-                              </ul>
-                            
-                        </div>
-                             
-                </nav>
             @yield('content')
         </main>
     </div>
