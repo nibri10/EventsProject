@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\event_register;
 use App\Events;
 
+
 class EventRegisterController extends Controller
 {
     public function index(){
@@ -19,23 +20,17 @@ class EventRegisterController extends Controller
         return view('events.show',compact('register'));
     }
 
-    public  function store(Request $request,Events $id){
+    public  function store(Request $request){
+        // Testa os valores da requisão
+        //dd($request->all());
+        $evento = Events::find($request->id_event);
+        $evento->decrement('vacancies', 1);
 
-        $request->validate([
-            'id_event'=>'required',
-            'id_user'=>'required'
-        ]);
-        $events = Events::find($id);
-        $quant = Events::find($vancancies);
+        event_register::create($request->all());
 
-        if($events && $quant!=0){
-            $events->decrement('vacancies');
-            event_register::created(request()->all());
-            return redirect()->route('paginas.index')->with('success','Inscrição Efetuada com sucesso');
-        }
-        else {
-            return redirect()->route('/')->with('errors', 'Não possivel se inscrever no evento');
-        }
+
+        return redirect()->route('events.index')->with('success','Evento criado com sucesso');
+
     }
 
 
