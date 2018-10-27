@@ -1,52 +1,22 @@
 language: php
+sudo: required
+dist: trusty
+
 php:
 - 7.2
 
-services:
-- redis-server
 
 addons:
-  apt:
-    sources:
-    - mysql-5.7-trusty
-    - sourceline: deb https://packages.cloudfoundry.org/debian stable main
-      key_url: https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key
-    packages:
-    - mysql-server
-    - cf-cli
-
-dist: trusty
-
-sudo: required
-
-branches:
-  only:
-  - master
-  - develop
-
-cache:
-  directories:
-  - vendor
-  - node_modules
+  chrome: stable
 
 install:
-- composer self-update
-- composer install --no-interaction
-- npm install
-- npm run prod
+- cp .env.testing .env
+- travis_retry composer install --no-interaction --prefer-dist --no-suggest
+- php artisan key:generate
 
 before_script:
-- mysql -e 'create database my_app_testing;'
-- php artisan migrate --force --seed
+- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+- php artisan serve &
 
 script:
-- vendor/bin/phpcs
-- vendor/bin/phpunit
-
-deploy:
-  provider: script
-  script: bash deploy.sh
-  skip_cleanup: true
-  on:
-    repo: nibri10/EventsProject
-    branch: upload-de-arquivos
+- php artisan dusk
