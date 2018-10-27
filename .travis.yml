@@ -1,5 +1,4 @@
 language: php
-
 php:
 - 7.2
 
@@ -49,5 +48,5 @@ deploy:
   script: bash deploy.sh
   skip_cleanup: true
   on:
-    repo: github-username/my-app
-    branch: develop
+    repo: nibri10/EventsProject
+    branch: upload-de-arquivos
