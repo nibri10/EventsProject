@@ -14,6 +14,7 @@ class CreateFileEntriesTable extends Migration
     public function up()
     {
         Schema::create('file_entries', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->string('filename');
             $table->string('mime');
@@ -29,7 +30,8 @@ class CreateFileEntriesTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {   Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('file_entries');
+
     }
 }
