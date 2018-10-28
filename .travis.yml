@@ -5,17 +5,12 @@ dist: trusty
 php:
 - 7.2
 
-addons:
-  chrome: stable
-
-install:
-- travis_retry composer install --no-interaction --prefer-dist --no-suggest
-- travis_retry npm install
-- npm run prod
-
 before_script:
-- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-- php artisan serve &
+- cp .env.travis .env
+- mysql -e 'create database homestead_test;'
+- composer self-update
+- composer install --no-interaction
+- php artisan key:generate
 
 script:
-- php artisan dusk
+- vendor/bin/phpunit
