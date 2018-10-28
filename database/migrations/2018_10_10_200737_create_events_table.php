@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Events extends Migration
+class CreateEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,9 @@ class Events extends Migration
      * @return void
      */
     public function up()
-    {   /** nome,descricao,
-        *data de inicio,data de termino,local,
-        *horario de inicio, 
-        *horario de termino, 
-        *cidade,vagas, 
-        *publico alvo,
-        *arquivo */
+    {
         Schema::create('events', function (Blueprint $table) {
+            $table->engine = "InnoDB";
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('description')->nullable();
@@ -33,10 +28,11 @@ class Events extends Migration
             $table->string('target_audience')->nullable();
             $table->integer('arquivo')->unsigned();
             $table->timestamps();
+        });
 
-            $table->foreign('arquivo')
-                ->references('id')->on('file_entries')
-                ->onDelete('cascade');
+        Schema::table('events', function(Blueprint $table) {
+            $table->foreign('arquivo')->references('id')->on('file_entries')
+                ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -46,7 +42,7 @@ class Events extends Migration
      * @return void
      */
     public function down()
-    {
+    {   Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('events');
     }
 }
