@@ -9,14 +9,15 @@ use GuzzleHttp\Client;
 
 class SendEventApi implements ShouldQueue
 {
+    protected $httpClient;
     /**
      * Create the event listener.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Client $httpClient)
     {
-        //
+        $this->httpClient = $httpClient;
     }
 
     /**
@@ -26,10 +27,7 @@ class SendEventApi implements ShouldQueue
      * @return void
      */
     public function handle(EventCreateApi $event)
-    {   $client = new Client();
-        $httpClient = $client->post('');
-        //dd($event);
-
-        return;
+    {
+        $response = $this->httpClient->post(config('x.y'), ['json' => $event->data]);
     }
 }
