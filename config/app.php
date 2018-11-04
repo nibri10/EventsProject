@@ -211,6 +211,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> Adding Listerner and Events
     ],
 
 ];

@@ -38,8 +38,8 @@
                                 <p class="card-text">Publico Alvo:{{$event->target_audience}}</p>
                                 <p class="card-text"><small class="text-muted">Data inicio:{{$event->date_initial}}</small></p>
                                 <p class="card-text"><small class="text-muted">Data de Termino:{{$event->date_finish}}</small></p>
-                                <input type="hidden" name="id_event" value="{{$event->id}}" >
-                                <input type="hidden" name="id_user" value="{{Auth::user()->id}}" >
+                                <input type="hidden" name="event_id_event" value="{{$event->id}}" >
+                                <input type="hidden" name="user_id_user" value="{{Auth::user()->id}}">
                                 <button type="submit" class="btn btn-primary">Inscrever-se</button>
                             </div>
                         </div>

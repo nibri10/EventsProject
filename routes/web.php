@@ -40,7 +40,7 @@ Route::middleware(['level:0'])->group(function () {
 
 Route::middleware(['level:1'])->group(function () {
     Route::resource('events','EventsController');
-    Route::resource('usuarios','EventRegisterController');
+    Route::resource('usuarios','UserRegistrationEventController');
     });
 
 });

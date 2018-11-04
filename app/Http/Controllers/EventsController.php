@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Event\EventCreateApi;
 use Illuminate\Http\Request;
 use \App\Event;
 use App\Http\Requests\EventRequest;
@@ -17,7 +18,7 @@ class EventsController extends Controller {
             ->with('i', (request()->input('page', 1) - 1) * 100);
     }
 
-    public function show(Events $event)
+    public function show(Event $event)
     {
         return view('events.show',compact('event'));
     }
@@ -29,8 +30,9 @@ class EventsController extends Controller {
     public function store(EventRequest $request) {
 
         $validated = $request->validated();
-
-        Event::create($request->all());
+        //dd($request->all());
+       $event = Event::create($request->all());
+        event(new EventCreateApi($event));
         return redirect()->route('events.index')->with('success','Evento criado com sucesso');
     }
     

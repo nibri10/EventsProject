@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Events::class, function (Faker $faker) {
+$factory->define(App\Event::class, function (Faker $faker) {
     return [
         'name'=>$faker->name,
         'description'=>$faker->name,
@@ -12,6 +12,7 @@ $factory->define(App\Events::class, function (Faker $faker) {
         'time'=>$faker->time,
         'time_expiration'=>$faker->time,
         'city'=>$faker->city,
+        'arquivo'=>'1',
         'vacancies'=>$faker->randomDigit,
         'target_audience'=>$faker->name,
         

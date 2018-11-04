@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/painel';
 
     /**
      * Create a new controller instance.
@@ -48,22 +48,20 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $messages=[
-
+        $messages=([
             'name.required'=>'O nome é um campo obrigatório',
             'ra.required'=>'O Ra é um campo obrigatório',
             'email.required'=>'O email é um campo obrigatório',
             'password.required'=> 'O campo senha é obrigatório',
-            'password_confirmation.required'=>'O campo confirmação de senha é obrigatório'
-        ];
+        ]);
 
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'ra' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'g-recaptcha-response' => 'required|captcha',
         ],$messages);
+
     }
 
 
