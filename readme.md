@@ -1,7 +1,7 @@
 
 
 <p align="center">
-<a href="https://travis-ci.com/nibri10/EventsProject.svg?branch=master"><img src="" alt="Build Status"></a>
+<a href="https://travis-ci.com/nibri10/EventsProject"><img src="https://travis-ci.com/nibri10/EventsProject.svg?branch=master" alt="Build Status"></a>
 </p>
 
 ## Events Project
