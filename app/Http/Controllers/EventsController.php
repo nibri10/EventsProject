@@ -30,9 +30,11 @@ class EventsController extends Controller {
     public function store(EventRequest $request) {
 
         $validated = $request->validated();
-        dd($request->all());
-       $event = Event::create($request->all());
-        event(new EventCreateApi($event));
+        //dd($request->all());
+
+       $teste= Event::create($request->all());
+        event(new EventCreateApi($teste));
+
         return redirect()->route('events.index')->with('success','Evento criado com sucesso');
     }
     

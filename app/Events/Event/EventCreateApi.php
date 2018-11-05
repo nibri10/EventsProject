@@ -3,6 +3,7 @@
 namespace App\Events\Event;
 
 
+use Illuminate\Http\Request;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use App\Event;
@@ -11,15 +12,15 @@ class EventCreateApi
 {
     use Dispatchable, SerializesModels;
 
-    public  $event;
+    public  $request;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Event $event)
+    public function __construct(Event $request)
     {
-        $this->event = $event;
+        $this->request = $request;
 
 
     }
