@@ -4,9 +4,8 @@ namespace App\Events\Event;
 use Illuminate\Http\Request;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
-use App\Event;
-
-class EventCreateApi
+use App\UserRegistrationEvent;
+class UserRegistration
 {
     use Dispatchable, SerializesModels;
 
@@ -16,7 +15,7 @@ class EventCreateApi
      *
      * @return void
      */
-    public function __construct(Event $request)
+    public function __construct(UserRegistrationEvent $request)
     {
         $this->request = $request;
 

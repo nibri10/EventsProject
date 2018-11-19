@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Listeners\Event;
-use App\Events\Event\EventCreateApi;
+use App\Events\Event\UserRegistration;
 use Illuminate\Http\Request;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\UserRegistrationEvent;
 use GuzzleHttp\Client;
-use App\Event;
 
-class SendEventApi implements ShouldQueue
+
+class SendRegistrationUser implements ShouldQueue
 {
     protected $request;
     /**
@@ -18,17 +19,16 @@ class SendEventApi implements ShouldQueue
      */
     public function __construct(Request $request)
     {
-
         $this->request = $request;
     }
 
     /**
      * Handle the event.
      *
-     * @param  EventCreateApi  $event
-     * @return Client
+     * @param  UserRegistration  $event
+     * @return void
      */
-    public function handle(EventCreateApi $event)
+    public function handle(UserRegistration $event)
     {
 
         $client = new Client([
@@ -44,25 +44,17 @@ class SendEventApi implements ShouldQueue
             'Authorization' => 'Bearer ' . $token,
             'Accept'        => 'application/json',
         ];
-        $post = $client->request('POST','event', [
+        $post = $client->request('POST','register', [
             'headers'=>$headers,
             'json'=>[
-                "arquivo"=>$event->request->arquivo,
-                "city"=>$event->request->city,
-                "date_finish"=>$event->request->date_finish,
-                "date_initial"=>$event->request->date_initial,
-                "description"=>$event->request->description,
-                "local"=>$event->request->local,
-                "name"=>$event->request->name,
-                "target_audience"=>$event->request->target_audience,
-                "time_expiration"=>$event->request->time_expiration,
-                "time_initial"=>$event->request->time,
-                "vancancies"=>$event->request->vacancies,
+                "event_id_event"=>$event->request->event_id_event,
+                "user_id_user"=>$event->request->user_id_user,
+
             ]
         ]);
         $response = json_decode($post->getBody(), true);
         //dd($response);
-     return;
-    }
+        return;
 
+    }
 }

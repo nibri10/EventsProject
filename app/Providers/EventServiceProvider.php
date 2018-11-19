@@ -21,6 +21,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Event\EventCreateApi' =>[
             'App\Listeners\Event\SendEventApi'
         ],
+
+        'App\Events\Event\UserRegistration' =>[
+            'App\Listeners\Event\SendRegistrationUser'
+        ],
     ];
 
     /**

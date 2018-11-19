@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Listeners\Event;
-use App\Events\Event\EventCreateApi;
+namespace App\Listeners;
+
+use App\Events\RegisterUser;
 use Illuminate\Http\Request;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use GuzzleHttp\Client;
-use App\Event;
+use App\User;
 
-class SendEventApi implements ShouldQueue
+class SendRegisterUser
 {
     protected $request;
     /**
@@ -18,19 +19,17 @@ class SendEventApi implements ShouldQueue
      */
     public function __construct(Request $request)
     {
-
-        $this->request = $request;
+        $this->request=$request;
     }
 
     /**
      * Handle the event.
      *
-     * @param  EventCreateApi  $event
-     * @return Client
+     * @param  RegisterUser  $event
+     * @return void
      */
-    public function handle(EventCreateApi $event)
+    public function handle(RegisterUser $event)
     {
-
         $client = new Client([
             'base_uri'=>env('API_HOST'),
             'Accept'=>'application/json',
@@ -44,25 +43,18 @@ class SendEventApi implements ShouldQueue
             'Authorization' => 'Bearer ' . $token,
             'Accept'        => 'application/json',
         ];
-        $post = $client->request('POST','event', [
+        $post = $client->request('POST','user', [
             'headers'=>$headers,
             'json'=>[
-                "arquivo"=>$event->request->arquivo,
-                "city"=>$event->request->city,
-                "date_finish"=>$event->request->date_finish,
-                "date_initial"=>$event->request->date_initial,
-                "description"=>$event->request->description,
-                "local"=>$event->request->local,
-                "name"=>$event->request->name,
-                "target_audience"=>$event->request->target_audience,
-                "time_expiration"=>$event->request->time_expiration,
-                "time_initial"=>$event->request->time,
-                "vancancies"=>$event->request->vacancies,
+                'name' =>$event->request->data['name'],
+                'ra'=> $event->request->data['ra'],
+                'email' => $event->request->data['email'],
+                'level'=>'0',
+                'password' => Hash::make($event->request->data['password'])
             ]
         ]);
         $response = json_decode($post->getBody(), true);
         //dd($response);
-     return;
+        return;
     }
-
 }

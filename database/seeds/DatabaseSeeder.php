@@ -21,14 +21,14 @@ class DatabaseSeeder extends Seeder
             'password'=>bcrypt('123456'),
         ]);*/
 
-        factory(\App\Event::class,100)->create();
+       // factory(\App\Event::class,100)->create();
 
-        /* User::create([
+         User::create([
             'name'=>'Erik Figueiredo',
             'ra'=>'23010-4',
             'level'=>'1',
             'email'=>'erik.figueired@gmail.com',
             'password'=>bcrypt('123456'),
-        ]);*/
+        ]);
     }
 }

@@ -1,15 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Events\Event\UserRegistration;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\UserRegistrationEvent;
 use App\Event;
-
-
 class UserRegistrationEventController extends Controller
 {
     public function index(){
@@ -32,18 +30,26 @@ class UserRegistrationEventController extends Controller
 
     public  function store(Request $request){
 
-        //dd($request->all());
+
 
        try {
 
-           $evento = Event::find($request->event_id_event);
-           $evento->decrement('vacancies', 1);
-           UserRegistrationEvent::create($request->all());
-           return redirect()->route('events.index')->with('success','Evento criado com sucesso');
+           $UserRegistrationVerification = DB::table('user_registration_events')
+               ->select('event_id_event','user_id_user')
+               ->where('user_id_user',$request->user_id_user)
+               ->where('event_id_event',$request->event_id_event)
+               ->first();
+           //dd($UserRegistrationVerification);
+           if(empty($UserRegistrationVerification)){
+               $evento = Event::find($request->event_id_event);
+               $evento->decrement('vacancies', 1);
+               $create=UserRegistrationEvent::create($request->all());
+               event(new UserRegistration($create));
+               return redirect()->route('events.index')->with('message','Evento criado com sucesso');
+           }
+            return back()->withErrors('Você já está cadastrado nesse evento')->withInput();
 
        } catch (ModelNotFoundException $exception){
-           $evento = Event::find($request->event_id_event);
-           $evento->increment('vacancies', 1);
            return back()->withErrors('Não é possível se cadastrar no evento')->withInput();
 
        }catch (QueryException $e){

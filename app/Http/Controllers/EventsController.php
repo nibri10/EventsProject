@@ -6,9 +6,6 @@ use App\Events\Event\EventCreateApi;
 use Illuminate\Http\Request;
 use \App\Event;
 use App\Http\Requests\EventRequest;
-
-
-
 class EventsController extends Controller {
 
     public function index() {
@@ -31,10 +28,8 @@ class EventsController extends Controller {
 
         $validated = $request->validated();
         //dd($request->all());
-
        $teste= Event::create($request->all());
         event(new EventCreateApi($teste));
-
         return redirect()->route('events.index')->with('success','Evento criado com sucesso');
     }
     
