@@ -6,57 +6,55 @@
 
 ## Events Project
 
-Project Events is a system for event creation and management that is under development.
+Project Events is a system for event creation and management that is under development and has integration with an external api made in Spring boot protected with json web token (JWT)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Routes
+```
++--------+----------------------------------------+---------------------------------------+----------------------------------+---------------------------------------------------------------------------------------------------+-------------------------------------------------+
+| Domain | Method                                 | URI                                   | Name                             | Action                                                                                            | Middleware                                      |
++--------+----------------------------------------+---------------------------------------+----------------------------------+---------------------------------------------------------------------------------------------------+-------------------------------------------------+
+|        | GET|HEAD                               | /                                     |                                  | Closure                                                                                           | web              |                              
+|        | GET|HEAD                               | _dusk/login/{userId}/{guard?}         |                                  | Laravel\Dusk\Http\Controllers\UserController@login                                                | web              |                              
+|        | GET|HEAD                               | _dusk/logout/{guard?}                 |                                  | Laravel\Dusk\Http\Controllers\UserController@logout                                               | web              |
+|        | GET|HEAD                               | _dusk/user/{guard?}                   |                                  | Laravel\Dusk\Http\Controllers\UserController@user                                                 | web              |
+|        | GET|HEAD                               | api/user                              |                                  | Closure                                                                                           | api,auth:api     |
+|        | GET|HEAD                               | home                                  | home                             | App\Http\Controllers\HomeController@index                                                         | web,auth         |
+|        | POST                                   | login                                 |                                  | App\Http\Controllers\Auth\LoginController@login                                                   | web,guest        |
+|        | GET|HEAD                               | login                                 | login                            | App\Http\Controllers\Auth\LoginController@showLoginForm                                           | web,guest        |
+|        | POST                                   | logout                                | logout                           | App\Http\Controllers\Auth\LoginController@logout                                                  | web              |
+|        | GET|HEAD                               | painel                                |                                  | App\Http\Controllers\PainelController@index                                                       | web,auth         |
+|        | POST                                   | painel/events                         | events.store                     | App\Http\Controllers\EventsController@store                                                       | web,auth,level:1 |
+|        | GET|HEAD                               | painel/events                         | events.index                     | App\Http\Controllers\EventsController@index                                                       | web,auth,level:1 |
+|        | GET|HEAD                               | painel/events/create                  | events.create                    | App\Http\Controllers\EventsController@create                                                      | web,auth,level:1 |
+|        | DELETE                                 | painel/events/{event}                 | events.destroy                   | App\Http\Controllers\EventsController@destroy                                                     | web,auth,level:1 |
+|        | PUT|PATCH                              | painel/events/{event}                 | events.update                    | App\Http\Controllers\EventsController@update                                                      | web,auth,level:1 |
+|        | GET|HEAD                               | painel/events/{event}                 | events.show                      | App\Http\Controllers\EventsController@show                                                        | web,auth,level:1 |
+|        | GET|HEAD                               | painel/events/{event}/edit            | events.edit                      | App\Http\Controllers\EventsController@edit                                                        | web,auth,level:1 |
+|        | GET|HEAD                               | painel/files                          |                                  | App\Http\Controllers\FileEntriesController@index                                                  | web,auth         |
+|        | GET|HEAD                               | painel/files/create                   |                                  | App\Http\Controllers\FileEntriesController@create                                                 | web,auth         |
+|        | POST                                   | painel/files/upload-file              |                                  | App\Http\Controllers\FileEntriesController@uploadFile                                             | web,auth         |
+|        | GET|HEAD                               | painel/files/{path_file}/{file}       |                                  | Closure                                                                                           | web,auth         |
+|        | GET|HEAD                               | painel/usuarios                       |                                  | App\Http\Controllers\UserRegistrationEventController@index                                        | web,auth,level:1 |
+|        | POST                                   | painel/usuarios                       |                                  | App\Http\Controllers\UserRegistrationEventController@show                                         | web,auth,level:0 |
+|        | DELETE                                 | painel/usuarios/{id}                  |                                  | App\Http\Controllers\UserRegistrationEventController@destroy                                      | web,auth,level:0 |
+|        | POST                                   | password/email                        | password.email                   | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail                             | web,guest        |
+|        | POST                                   | password/reset                        | password.update                  | App\Http\Controllers\Auth\ResetPasswordController@reset                                           | web,guest        |
+|        | GET|HEAD                               | password/reset                        | password.request                 | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm                            | web,guest        |
+|        | GET|HEAD                               | password/reset/{token}                | password.reset                   | App\Http\Controllers\Auth\ResetPasswordController@showResetForm                                   | web,guest        |
+|        | GET|HEAD                               | register                              | register                         | App\Http\Controllers\Auth\RegisterController@showRegistrationForm                                 | web,guest        |
+|        | POST                                   | register                              |                                  | App\Http\Controllers\Auth\RegisterController@register                                             | web,guest        |
++--------+----------------------------------------+---------------------------------------+----------------------------------+---------------------------------------------------------------------------------------------------+-------------------------------------------------+
+```
+ 
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Usage in project 
+The Events Project using GuzzleHtpp for comunication with external api made in Spring Boot integration with hibernate and
+JPA, with security JWT authentication
+* [GuzzleHttp](http://docs.guzzlephp.org/en/stable/)
+* [Spring](http://spring.io/projects/spring-boot)
+* [JWT Json Web Token Authentication](https://jwt.io/)
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The  Events Project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

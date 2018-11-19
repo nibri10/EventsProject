@@ -58,11 +58,12 @@ class UserRegistrationEventController extends Controller
            return back()->withErrors('Não é possível se cadastrar no evento')->withInput();
        }
 
+    }
 
-
-
-
-
+    public function destroy($id)
+    {
+        $UserRegistration = UserRegistrationEvent::findOrfail($id);
+        $UserRegistration->delete();
     }
 
 }
