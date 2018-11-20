@@ -4,11 +4,63 @@
 <a href="https://travis-ci.com/nibri10/EventsProject"><img src="https://travis-ci.com/nibri10/EventsProject.svg?branch=master" alt="Build Status"></a>
 </p>
 
-## Events Project
+# Events Project
 
 Project Events is a system for event creation and management that is under development and has integration with an external api made in Spring boot protected with json web token (JWT)
 
-## Routes
+### Installation
+   
+   ##### Requirements
+* [Node JS](https://nodejs.org/en/download/)  
+* [Composer](https://getcomposer.org/)
+* [Laravel Installation](https://laravel.com/docs/5.7#installation)
+
+###Procedures
+
+   * Open in root folder prompt Command 
+  ###### **Steps**:
+  * Run the commands 
+  * 1.Composer install:
+ 
+       ```
+          composer install
+       ```
+   * 2.NPM install:       
+      ```
+       npm install
+      ```
+   * 3.Php Artisan key:generate
+     ```
+     php artisan key:generate
+     ```
+   * 4.Create database base with name LaravelEventsProject in Mysql
+      ```
+      create database  LaravelEventsProject
+      ```
+      
+   * 4.Open archive .env adding
+       ```
+        DB_DATABASE=LaravelEvensProject
+        DB_USERNAME=username
+        DB_PASSWORD=password
+        QUEUE_CONNECTION=database
+        API_HOST=localhost:8080/api/
+       ```
+   * 6.Run php artisan migrate
+      ```
+      php artisan migrate
+      ```
+   * 7.Run server
+     ```
+     php artisan serve
+     ```
+   * 8.Open other command prompt in root folder project 
+       * Run Queues
+        ```
+            php artisan queue:work
+        ```
+        
+### Routes
 ```
 +--------+----------------------------------------+---------------------------------------+----------------------------------+---------------------------------------------------------------------------------------------------+-------------------------------------------------+
 | Domain | Method                                 | URI                                   | Name                             | Action                                                                                            | Middleware                                      |
@@ -54,7 +106,7 @@ JPA, with security JWT authentication
 * [GuzzleHttp](http://docs.guzzlephp.org/en/stable/)
 * [Spring](http://spring.io/projects/spring-boot)
 * [JWT Json Web Token Authentication](https://jwt.io/)
+* [Laravel Framework](https://laravel.com)
 
 ## License
-
 The  Events Project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
