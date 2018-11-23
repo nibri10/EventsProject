@@ -34,6 +34,7 @@ class EventsController extends Controller {
     }
     
     public  function edit($id){
+
         $event = Event::find($id);
         return view('events.edit', compact('event'));
     }
@@ -43,7 +44,24 @@ class EventsController extends Controller {
         $events->update($request->all());
         return redirect()->route('events.index')->with('success','Evento Atualizado com sucesso');
     }
-    
+
+    public function desactive($id){
+
+        $desactive = Event::findOrfail($id);
+
+        if($desactive->active == 0){
+            $desactive->increment('active',1);
+            return redirect()->route('events.index')->with('success','Evento Desativo com sucesso');
+        }
+       else
+           $desactive->decrement('active',1);
+            return redirect()->route('events.index')->with('success','Evento Ativado com sucesso!');
+
+
+
+
+    }
+
     public function destroy($id){
         $events = Event::findOrfail($id);
         $events->delete();

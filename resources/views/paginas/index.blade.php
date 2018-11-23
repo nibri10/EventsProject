@@ -25,10 +25,10 @@
 
         <div class="row">
         @foreach ($events as $event)
-            @if($event->vacancies>0)
+            @if($event->vacancies>0 && $event->active==0)
 
                 <div class="col-md-4">
-                <form method="post" action="{{route('usuarios.store')}}" enctype="multipart/form-data">
+                <form method="post" @if(Auth::user()->level==0)action="{{route('usuarios.store')}}" @endif enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="container">
                         <div class="card" style="width: 20rem; text-align:center;display:inline-block;">
@@ -46,12 +46,17 @@
                                 <p class="card-text"><small class="text-muted">Data de Termino:{{$event->date_finish}}</small></p>
                                 <input type="hidden" name="event_id_event" value="{{$event->id}}" >
                                 <input type="hidden" name="user_id_user" value="{{Auth::user()->id}}">
+                                <input type="hidden" name="id" value="{{$event->id}}" >
+                                @if(Auth::user()->level==1)
+                                    <a href="{{route('events.index')}}" class="btn btn-info"></a>
+                                @endif
+                                @if(Auth::user()->level==0)
                                 <button type="submit" class="btn btn-primary">Inscrever-se</button>
+                                @endif
+
                             </div>
                         </div>
-
                     </div>
-
                 </form>
                    </div>
 
