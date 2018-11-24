@@ -54,15 +54,12 @@
                                             <a class="nav-link" href="{{route('events.index')}}">Editar Eventos</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{route('usuarios.index')}}">Listar Usuários</a>
+                                            <a class="nav-link" href="{{route('usuarios.index')}}">Usuários Inscristos Eventos</a>
                                         </li>
                                     @endif
-                                    @if(Auth::user()->level>=0)
+                                    @if(Auth::user()->level==0)
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Eventos Inscritos</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Cancelar Inscrições</a>
+                                            <a class="nav-link" href="{{route('usuarios.subscription',Auth::user()->id)}}">Eventos Inscritos</a>
                                         </li>
                                     @endif
                                 </ul>

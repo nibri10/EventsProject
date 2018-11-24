@@ -30,7 +30,7 @@ class EventsController extends Controller {
         //dd($request->all());
        $teste= Event::create($request->all());
         event(new EventCreateApi($teste));
-        return redirect()->route('events.index')->with('success','Evento criado com sucesso');
+        return redirect()->route('painel.index')->with('success','Evento criado com sucesso');
     }
     
     public  function edit($id){
@@ -46,27 +46,20 @@ class EventsController extends Controller {
     }
 
     public function desactive($id){
-
         $desactive = Event::findOrfail($id);
-
         if($desactive->active == 0){
             $desactive->increment('active',1);
-            return redirect()->route('events.index')->with('success','Evento Desativo com sucesso');
-        }
+            return redirect()->route('events.index')->with('success','Evento Desativo com sucesso');}
        else
            $desactive->decrement('active',1);
-            return redirect()->route('events.index')->with('success','Evento Ativado com sucesso!');
-
-
-
-
+       return redirect()->route('events.index')->with('success','Evento Ativado com sucesso!');
     }
+
 
     public function destroy($id){
         $events = Event::findOrfail($id);
         $events->delete();
-        
-        return redirect()->route('events.index')->with('alert-message','Evento Deletado'
+        return redirect()->route('painel.index')->with('alert-message','Evento Deletado'
                 . 'com sucesso!!!');
         
     }

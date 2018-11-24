@@ -11,16 +11,24 @@ use App\Event;
 class UserRegistrationEventController extends Controller
 {
     public function index(){
-
         $userRegistration = DB::table('user_registration_events')
             ->join('users','user_id_user','=','users.id')
             ->join('events','event_id_event','=','events.id')
             ->select('users.name as username','events.name as eventname')
             ->get();
-
         //dd($userRegistration); Teste de requisãp
         return view('userRegistration.show',compact('userRegistration'));
+    }
 
+    public function Subscription($id){
+        $subscription = DB::table('user_registration_events')
+            ->join('users','user_id_user', '=','users.id')
+            ->join('events','event_id_event','=','events.id')
+            ->select('user_registration_events.id','users.name as username','events.name as eventname')
+            ->where('users.id','=',$id)
+            ->get();
+        //dd($subscription);
+        return view('userRegistration.subscription',compact('subscription'));
     }
 
     public function show(UserRegistrationEvent $register)
@@ -29,11 +37,7 @@ class UserRegistrationEventController extends Controller
     }
 
     public  function store(Request $request){
-
-
-
        try {
-
            $UserRegistrationVerification = DB::table('user_registration_events')
                ->select('event_id_event','user_id_user')
                ->where('user_id_user',$request->user_id_user)
@@ -45,7 +49,7 @@ class UserRegistrationEventController extends Controller
                $evento->decrement('vacancies', 1);
                $create=UserRegistrationEvent::create($request->all());
                event(new UserRegistration($create));
-               return redirect()->route('events.index')->with('message','Evento criado com sucesso');
+               return redirect()->route('painel.index')->with('success','Inscrito com sucesso!');
            }
             return back()->withErrors('Você já está cadastrado nesse evento')->withInput();
 
@@ -64,6 +68,8 @@ class UserRegistrationEventController extends Controller
     {
         $UserRegistration = UserRegistrationEvent::findOrfail($id);
         $UserRegistration->delete();
+
+        return redirect()->route('painel.index')->with('success','Desinscrição Realizada com sucesso!');
     }
 
 }

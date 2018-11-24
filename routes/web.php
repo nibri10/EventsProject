@@ -32,11 +32,12 @@ Route::middleware(['auth'])->prefix('painel')->group(function () {
         }
     });
 
-    Route::get('/','PainelController@index');
+    Route::get('/','PainelController@index')->name('painel.index');
 Route::middleware(['level:0'])->group(function () {
     Route::post('usuarios', 'UserRegistrationEventController@store')->name('usuarios.store');
     Route::get('usuarios/{id}', 'UserRegistrationEventController@show')->name('usuarios.show');
     Route::delete('usuarios/{id}', 'UserRegistrationEventController@destroy')->name('usuarios.destroy');
+    Route::get('usuarios/{id}','UserRegistrationEventController@Subscription')->name('usuarios.subscription');
 });
 
 Route::middleware(['level:1'])->group(function () {

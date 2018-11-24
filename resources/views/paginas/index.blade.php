@@ -8,7 +8,6 @@
 
         @if ($errors->any())
             <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -47,9 +46,6 @@
                                 <input type="hidden" name="event_id_event" value="{{$event->id}}" >
                                 <input type="hidden" name="user_id_user" value="{{Auth::user()->id}}">
                                 <input type="hidden" name="id" value="{{$event->id}}" >
-                                @if(Auth::user()->level==1)
-                                    <a href="{{route('events.index')}}" class="btn btn-info"></a>
-                                @endif
                                 @if(Auth::user()->level==0)
                                 <button type="submit" class="btn btn-primary">Inscrever-se</button>
                                 @endif

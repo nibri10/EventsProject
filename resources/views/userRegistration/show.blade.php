@@ -7,12 +7,13 @@
             </div>
         @endif
     
-    @if(empty($userRegistration))
+    @if(!empty($userRegistration))
         <table class="table table-dark">
             <thead>
             <tr>
-                <th scope="col">Nome do Usuario:</th>
-                <th scope="col">Evento:</th>
+                <th scope="col">Nome do Usuario</th>
+                <th scope="col">Evento</th>
+
             </tr>
             </thead>
             <tbody>
@@ -25,7 +26,7 @@
             </tbody>
         </table>
         @endif
-    @if (!empty($userRegistration))
+    @if (empty($userRegistration))
                 <div class="alert alert-primary" role="alert">
                    Não possui usuarios registrados em eventos
                 </div>
