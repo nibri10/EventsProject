@@ -17,7 +17,7 @@
         </div>
     @endif
     
-    <form method="post" action="{{route('events.create')}}" enctype="multipart/form-data">
+    <form method="post" action="{{route('events.store')}}" enctype="multipart/form-data">
         @csrf
         <div class="form-row">
             <div class="col">
@@ -96,9 +96,7 @@
             </div>
         </div>
 
-
          <button type="submit" class="btn btn-primary">Criar Evento</button>
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script>
             $.ajax({
@@ -108,7 +106,7 @@
             });
 
             $("form").submit(function () {
-                $.post('events.create', { 'arquivo' : $("input[name=arquivos]").val() } ,function(){
+                $.post('events.store', { 'arquivo' : $("input[name=arquivos]").val() } ,function(){
                 });
             });
         </script>

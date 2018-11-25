@@ -23,10 +23,10 @@
             @endif
 
 
-    <table class="table table-dark">
-        <thead class="thead-dark">
+    <table class="table table-dark ">
+        <thead class="thead-dark col-md-9 ml-sm-auto col-lg-10 px-4">
         <tr class="m-lg-auto">
-            <th class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Nome</th>
+            <th scope="col-xs-2 col-sm-2 col-md-2 col-lg-2">Nome</th>
             <th scope="col-xs-2 col-sm-2 col-md-2 col-lg-2">Descrição</th>
             <th scope="col-xs-2 col-sm-2 col-md-2 col-lg-2">Data de Ínicio</th>
             <th scope="col-xs-2 col-sm-2 col-md-2 col-lg-2">Data de Termino</th>

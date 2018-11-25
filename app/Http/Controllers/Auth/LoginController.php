@@ -69,7 +69,7 @@ class LoginController extends Controller
      */
     protected function sendFailedLoginResponse(Request $request)
     {
-        $request->session()->put('login_error', trans('auth.failed'));
+        $request->session()->put('login_error', trans('Credencias Incorretas Tente Novamente!'));
         throw ValidationException::withMessages(
             [
                 'error' => [trans('auth.failed')],

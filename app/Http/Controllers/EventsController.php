@@ -30,7 +30,7 @@ class EventsController extends Controller {
         //dd($request->all());
        $teste= Event::create($request->all());
         event(new EventCreateApi($teste));
-        return redirect()->route('painel.index')->with('success','Evento criado com sucesso');
+        return redirect()->route('painel.index')->with('success','Evento Ativado com sucesso!');
     }
     
     public  function edit($id){

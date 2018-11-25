@@ -6,8 +6,13 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-    
-    @if(!empty($userRegistration))
+
+    @if ($userRegistration->count()==0)
+                <div class="alert alert-primary" role="alert">
+                    Não possui usuarios registrados em eventos
+                </div>
+            @endif
+    @if($userRegistration->count()>0)
         <table class="table table-dark">
             <thead>
             <tr>
@@ -26,10 +31,5 @@
             </tbody>
         </table>
         @endif
-    @if (empty($userRegistration))
-                <div class="alert alert-primary" role="alert">
-                   Não possui usuarios registrados em eventos
-                </div>
-    @endif
 </div>
 @endsection

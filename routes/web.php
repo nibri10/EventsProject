@@ -22,9 +22,8 @@ Auth::routes();
 Route::middleware(['auth'])->prefix('painel')->group(function () {
 
     Route::get('files', 'FileEntriesController@index');
-    Route::get('files/create', 'FileEntriesController@create');
+    Route::get('files/create', 'FileEntriesController@create')->name('files.create');
     Route::post('files/upload-file', 'FileEntriesController@uploadFile');
-
     Route::get('files/{path_file}/{file}', function($path_file = null, $file = null) {
         $path = storage_path().'/files/uploads/'.$path_file.'/'.$file;
         if(file_exists($path)) {
@@ -41,6 +40,7 @@ Route::middleware(['level:0'])->group(function () {
 });
 
 Route::middleware(['level:1'])->group(function () {
+
     Route::resource('events','EventsController');
     Route::get('usuarios','UserRegistrationEventController@index')->name('usuarios.index');
     Route::post('events/{id}','EventsController@desactive')->name('events.desactive');

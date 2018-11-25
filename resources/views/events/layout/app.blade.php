@@ -7,11 +7,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'EventsProject') }}</title>
+    <title>{{ 'EventsProject'}}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.13.0/dojo/dojo.js"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -25,8 +26,8 @@
     <div id="app">
         <nav class="navbar navbar-expand navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/painel') }}">
-                    {{ config('app.name', 'Events Project ') }}
+                <a class="navbar-brand" href="{{ route('painel.index') }}">
+                    {{ 'Events Project ' }}
                 </a>
                     <!-- Left Side Of Navbar -->
                 <div class="navbar-collapse collapse show mr-auto" >

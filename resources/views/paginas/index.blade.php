@@ -2,10 +2,6 @@
 @section('content')
 
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Eventos</h1>
-        </div>
-
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -22,10 +18,21 @@
             </div>
         @endif
 
+        @if($events->count()==0)
+            <div class="alert alert-info" role="alert">
+                Não possui nenhum evento cadastrado!
+            </div>
+        @endif
+
+        @if($events->count()>0)
         <div class="row">
         @foreach ($events as $event)
+            @if($event->vacancies==0 || $event->active==1)
+                    <div class="alert alert-info" role="alert" style="width:100%;">
+                        Não possui nenhum evento Ativo!
+                    </div>
+                @endif
             @if($event->vacancies>0 && $event->active==0)
-
                 <div class="col-md-4">
                 <form method="post" @if(Auth::user()->level==0)action="{{route('usuarios.store')}}" @endif enctype="multipart/form-data">
                     {{ csrf_field() }}
@@ -49,7 +56,6 @@
                                 @if(Auth::user()->level==0)
                                 <button type="submit" class="btn btn-primary">Inscrever-se</button>
                                 @endif
-
                             </div>
                         </div>
                     </div>
@@ -59,7 +65,7 @@
             @endif
         @endforeach
         </div>
-
+        @endif
     </main>
 
     </div>

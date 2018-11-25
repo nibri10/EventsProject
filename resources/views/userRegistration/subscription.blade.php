@@ -6,9 +6,16 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
+        @if($subscription->count()==0)
 
+                <div class="alert alert-info" role="alert">
+                   {{Auth::user()->name}} você não está cadastrado em nenhum evento!
+                </div>
 
-            <table class="table table-dark">
+            @endif
+
+        @if($subscription->count()>0)
+            <table class="table table-dark ">
                 <thead>
                 <tr>
                     <th scope="col">Nome do Usuario</th>
@@ -32,5 +39,6 @@
                 @endforeach
                 </tbody>
             </table>
+            @endif
     </div>
 @endsection
