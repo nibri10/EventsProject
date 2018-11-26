@@ -39,7 +39,7 @@
                     <div class="container">
                         <div class="card" style="width: 20rem; text-align:center;display:inline-block;">
                             <div class="card border-primary mb-4">
-                                <img src="http://logofaves.com/wp-content/uploads/2011/10/imag_m.jpg?9cf02b" class="img-fluid" alt="Responsive image">
+                                <img src='{{asset('uploads/'.$event->path.'/'.$event->filename)}}' class="img-fluid" alt="Responsive image">
                                 <h5 class="card-title">Titulo:{{$event->name}}</h5>
                                 <p class="card-text">Descrição:{{$event->description}}</p>
                                 <p class="card-text">Local:{{$event->local}}</p>
@@ -63,6 +63,7 @@
                    </div>
 
             @endif
+
         @endforeach
         </div>
         @endif

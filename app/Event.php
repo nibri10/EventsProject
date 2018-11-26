@@ -11,4 +11,6 @@ class Event extends Model
         'local', 'time','time_expiration','city','vacancies',
         'target_audience','arquivo'
     ];
+
+
 }

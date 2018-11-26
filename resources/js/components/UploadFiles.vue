@@ -13,7 +13,7 @@
             <div class="success-container" v-if="file.id > 0">
                 Upload de Imagem realizado com sucesso!
                 <input type="hidden" :name="input_name" :value="file.id"/>
-
+                <input type="hidden" :name="input_file" :value="file.name"/>
             </div>
             <div class="remove-container" v-else>
                 <a class="remove" v-on:click="removeFile(key)">Remover Arquivo</a>
@@ -26,7 +26,7 @@
 
 <script>
     export default {
-        props: ['input_name', 'post_url'],
+        props: ['input_name','input_file' ,'post_url'],
         data() {
             return {
                 files: []

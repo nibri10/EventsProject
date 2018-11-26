@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container">
+    @if($events->count()==0)
+        <div class="alert alert-info" role="alert">
+            Não possui nenhum evento cadastrado!
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-lg-20 margin-tb">
 
@@ -23,6 +29,8 @@
             @endif
 
 
+
+                @if($events->count()>0)
     <table class="table table-dark ">
         <thead class="thead-dark col-md-9 ml-sm-auto col-lg-10 px-4">
         <tr class="m-lg-auto">
@@ -58,7 +66,6 @@
                 <td scope="row">Desativado</td>
                 <td scope="row">
                     <form action="{{ route('events.destroy',$events->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('events.show',$events->id) }}">Detalhes</a>
                         <a class="btn btn-primary" href="{{ route('events.edit',$events->id) }}">Editar</a>
                         @csrf
                         @method('DELETE')
@@ -89,7 +96,6 @@
                     <td scope="row">Ativado</td>
                     <td scope="row">
                         <form action="{{ route('events.destroy',$events->id) }}" method="POST">
-                            <a class="btn btn-info" href="{{ route('events.show',$events->id) }}">Detalhes</a>
                             <a class="btn btn-primary" href="{{ route('events.edit',$events->id) }}">Editar</a>
                             @csrf
                             @method('DELETE')
@@ -108,6 +114,8 @@
         @endforeach
         </tbody>
     </table>
+                @endif
+
     </div>
 
     </div>

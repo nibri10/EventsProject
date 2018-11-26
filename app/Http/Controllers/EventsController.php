@@ -9,27 +9,18 @@ use App\Http\Requests\EventRequest;
 class EventsController extends Controller {
 
     public function index() {
-
-        $events = Event::latest()->paginate(100);
-        return view('events.index',compact('events'))
-            ->with('i', (request()->input('page', 1) - 1) * 100);
+        $events = Event::all();
+        return view('events.index',compact('events'));
     }
-
-    public function show(Event $event)
-    {
-        return view('events.show',compact('event'));
-    }
-
     public function create() {
         return view('events.create');
     }
-
     public function store(EventRequest $request) {
 
         $validated = $request->validated();
         //dd($request->all());
-       $teste= Event::create($request->all());
-        event(new EventCreateApi($teste));
+       $create= Event::create($request->all());
+        event(new EventCreateApi($create));
         return redirect()->route('painel.index')->with('success','Evento Ativado com sucesso!');
     }
     
@@ -59,7 +50,7 @@ class EventsController extends Controller {
     public function destroy($id){
         $events = Event::findOrfail($id);
         $events->delete();
-        return redirect()->route('painel.index')->with('alert-message','Evento Deletado'
+        return redirect()->route('painel.index')->with('sucess','Evento Deletado'
                 . 'com sucesso!!!');
         
     }

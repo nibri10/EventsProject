@@ -11,11 +11,14 @@ use Illuminate\Support\Facades\Storage;
 
 class FileEntriesController extends Controller
 {
+
+//Event::join('file_entries','arquivo','=','file_entries.id')->get();
     public function index() {
         $files = FileEntry::all();
-        //dd($files);
         return view('files.index', compact('files'));
     }
+
+
 
     public function create() {
         return view('files.create');
@@ -34,12 +37,14 @@ class FileEntriesController extends Controller
             $file = FileEntry::create($input);
             return response()->json([
                 'success' => true,
-                'id' => $file->id
+                'id' => $file->id,
             ], 200);
         }
         return response()->json([
             'success' => false
         ], 500);
     }
+
+
 }
 

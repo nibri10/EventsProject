@@ -57,6 +57,12 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{route('usuarios.index')}}">Usuários Inscristos Eventos</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{route('files.index')}}"> Mostrar Arquivos</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{route('files.create')}}"> Adicionar Arquivos</a>
+                                        </li>
                                     @endif
                                     @if(Auth::user()->level==0)
                                         <li class="nav-item">
