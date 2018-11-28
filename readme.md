@@ -16,7 +16,7 @@ Project Events is a system for event creation and management that is under devel
 * [Laravel Installation](https://laravel.com/docs/5.7#installation)
 * [EventsProject-Api](https://github.com/nibri10/EventsProject-Api)
 
-##Procedures
+### Procedures
 
    * Open in root folder prompt Command 
   ###### **Steps**:
