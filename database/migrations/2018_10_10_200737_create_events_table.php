@@ -25,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->string('time_expiration')->nullable();
             $table->string('city')->nullable();
             $table->integer('vacancies')->nullable();
+            $table->integer('active')->default(0);
             $table->string('target_audience')->nullable();
             $table->integer('arquivo')->unsigned();
             $table->timestamps();

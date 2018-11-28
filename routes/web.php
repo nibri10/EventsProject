@@ -44,8 +44,7 @@ Route::middleware(['level:1'])->group(function () {
     Route::resource('events','EventsController');
     Route::get('usuarios','UserRegistrationEventController@index')->name('usuarios.index');
     Route::post('events/{id}','EventsController@desactive')->name('events.desactive');
-    Route::get('users','UserController@index')->name('users.index');
-    Route::delete('users/{id}','UserController@destroy')->name('users.destroy');
+    Route::resource('users','UserController');
     });
 
 });

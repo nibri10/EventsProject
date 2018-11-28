@@ -24,24 +24,32 @@
             </div>
         @endif
             @if($users->count()>0)
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Ra</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                 @foreach($users as $user)
-                    @if($user->level==0)
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Ra</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Ação</th>
-                </tr>
-                </thead>
-                <tbody>
+
+
                 <tr>
                     <th scope="row">{{$user->id}}</th>
                     <td>{{$user->name}}</td>
                     <td>{{$user->ra}}</td>
                     <td>{{$user->email}}</td>
+                    @if($user->level==0)
+                    <td>Usúario</td>
+                    @endif
+                    @if($user->level==1)
+                        <td>Administrador</td>
+                    @endif
                     <td>
                     <form action="{{ route('users.destroy',$user->id) }}" method="POST">
                         @csrf
@@ -50,10 +58,10 @@
                     </form>
                     </td>
                 </tr>
-                </tbody>
-            </table>
-                    @endif
+
                 @endforeach
+                    </tbody>
+                </table>
             @endif
 
     </div>

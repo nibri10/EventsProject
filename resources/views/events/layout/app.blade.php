@@ -82,6 +82,11 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                     </form>
+                                    @if(Auth::user()->level==1)
+                                    <a class="dropdown-item" href="{{route('users.create')}}">{{'Criar Usúarios'}}</a>
+                                        <a class="dropdown-item" href="{{route('users.index')}}">{{'Listar Usúarios'}}</a>
+
+                                        @endif
                                 </div>
                             </li>
                         @endguest

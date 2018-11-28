@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('usuario.create');
+        return view('auth.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -26,11 +26,13 @@ class UserController extends Controller
     {
         User::create([
             'name' => $request['name'],
+            'ra'=> $request['ra'],
             'email' => $request['email'],
+            'level' => $request['level'],
             'password' => $request['password'],
         ]);
 
-        return redirect('/usuario')->with('message','store');
+        return redirect()->route('users.index')->with('success','Usúario criado com sucesso!');
     }
     /**
      * Display the specified resource.

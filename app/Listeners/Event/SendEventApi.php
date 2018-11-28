@@ -36,6 +36,18 @@ class SendEventApi implements ShouldQueue
             'Accept'=>'application/json',
             'Content-type'=>'application/json'
         ]);
+        /*$register = $client->request('POST','auth/signup',[
+            'json'=>[
+                "name"=>"admin",
+                "username"=>"nibri10",
+                "email"=>"nibri.kcond2011@gmail.com",
+                "role"=>["admin","admin"],
+                "password"=>"123456789"
+            ]
+
+        ]);
+        $register= json_decode($register->getBody()->getContents(),true);
+        */
         $login = $client->request('POST','auth/signin',[
             'json'=>["username"=>"nibri10","password"=>"123456789"]]);
         $response = json_decode($login->getBody()->getContents(),true);
