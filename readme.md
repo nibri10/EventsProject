@@ -188,7 +188,7 @@ JPA, with security JWT authentication
 * [Laravel Framework](https://laravel.com)
 
 
-##References
+## References
 * [Laravel Eloquent Model Conventions](https://laravel.com/docs/5.7/eloquent#eloquent-model-conventions)
 * [Laravel Authentication](https://laravel.com/docs/5.7/authentication)
 * [Laravel Blade Templates](https://laravel.com/docs/5.7/blade)
